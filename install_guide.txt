@@ -75,9 +75,19 @@ echo "deb [signed-by=/etc/apt/keyrings/jenkins-keyring.asc]" \
 sudo apt update
 sudo apt install jenkins
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+#tomcat
+apt update
+wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.115/bin/apache-tomcat-9.0.115.zip
+cd apache---
+cd conf
+nano server.xml or vi server.xml
+
+
+
 sudo chmod 755 /home
 sudo chmod 755 /home/ubuntu
-sudo chown -R jenkins:jenkins /home/ubuntu/apache-tomcat-9.0.115
+sudo chown -R jenkins:jenkins /home/ubuntu/apache-tomcat-9.0.115/webapps/
 
 
 pipeline {
@@ -138,4 +148,30 @@ pipeline {
             }
         }
     }
+
 }
+
+
+after buidling pipeline
+start tomcat
+
+cd apache..tomcat
+cd bin
+chmod 700 *.sh
+./startup.sh
+cd ..
+cd webapps
+pwd
+copy this /home/ubuntu/apache-tomcat-9.0.115/webapps
+
+now copy pipeline last statement
+paste
+
+build fialed
+then 
+copy war of 1st build
+then paste in configure
+build then
+open address open tomcat
+
+http://13.61.33.175:8081/EcommerceApp/   use this
